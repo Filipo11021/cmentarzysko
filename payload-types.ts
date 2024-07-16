@@ -131,6 +131,7 @@ export interface Homepage {
     timerTitle: string;
   };
   aboutLeague: {
+    heading: string;
     title: string;
     description: string;
     buttons?:
@@ -142,6 +143,7 @@ export interface Homepage {
       | null;
   };
   questions: {
+    heading: string;
     title: string;
     description: string;
     buttons?:
@@ -154,12 +156,27 @@ export interface Homepage {
     items?:
       | {
           question: string;
-          answer: string;
+          answer: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
           id?: string | null;
         }[]
       | null;
   };
   prizes: {
+    heading: string;
     title: string;
     description: string;
     items?:

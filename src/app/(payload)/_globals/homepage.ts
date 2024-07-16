@@ -33,6 +33,11 @@ export const homepageGlobal: GlobalConfig = {
       name: 'aboutLeague',
       fields: [
         {
+          name: 'heading',
+          type: 'text',
+          required: true,
+        },
+        {
           name: 'title',
           type: 'text',
           required: true,
@@ -64,6 +69,11 @@ export const homepageGlobal: GlobalConfig = {
       name: 'questions',
       type: 'group',
       fields: [
+        {
+          name: 'heading',
+          type: 'text',
+          required: true,
+        },
         {
           name: 'title',
           type: 'text',
@@ -101,8 +111,9 @@ export const homepageGlobal: GlobalConfig = {
             },
             {
               name: 'answer',
-              type: 'textarea',
+              type: 'richText',
               required: true,
+              
             },
           ],
         },
@@ -112,6 +123,11 @@ export const homepageGlobal: GlobalConfig = {
       name: 'prizes',
       type: 'group',
       fields: [
+        {
+          name: 'heading',
+          type: 'text',
+          required: true,
+        },
         {
           name: 'title',
           type: 'text',
