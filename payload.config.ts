@@ -13,6 +13,8 @@ import { homepageGlobal } from '@/app/(payload)/_globals/homepage'
 import { env, isDevelopment } from '@/env.mjs'
 import { mediaCollection } from '@/app/(payload)/_collections/media'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { headerGlobal } from '@/app/(payload)/_globals/header'
+import { footerGlobal } from '@/app/(payload)/_globals/footer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,7 +39,7 @@ export default buildConfig({
   //editor: slateEditor({}),
   editor: lexicalEditor(),
   collections: [usersCollection, mediaCollection, linksCollection],
-  globals: [homepageGlobal],
+  globals: [homepageGlobal, headerGlobal, footerGlobal],
   secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

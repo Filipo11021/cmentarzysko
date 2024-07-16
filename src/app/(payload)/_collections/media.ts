@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const mediaCollection: CollectionConfig = {
   slug: 'media',
   admin: {
-    group: 'main',
+    group: 'Admin',
   },
   upload: {
     mimeTypes: ['image/*', 'video/*'],

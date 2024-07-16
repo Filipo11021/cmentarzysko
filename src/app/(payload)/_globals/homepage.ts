@@ -4,7 +4,7 @@ import { meta } from '../_fields/meta'
 export const homepageGlobal: GlobalConfig = {
   slug: 'homepage',
   admin: {
-    group: 'main',
+    group: 'Pages',
   },
   fields: [
     {
@@ -113,7 +113,7 @@ export const homepageGlobal: GlobalConfig = {
               name: 'answer',
               type: 'richText',
               required: true,
-              
+
             },
           ],
         },

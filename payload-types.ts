@@ -19,6 +19,8 @@ export interface Config {
   };
   globals: {
     homepage: Homepage;
+    header: Header;
+    footer: Footer;
   };
   locale: null;
   user: User & {
@@ -207,6 +209,47 @@ export interface Homepage {
     ogImage?: string | Media | null;
     twitterImage?: string | Media | null;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  navigation: {
+    label: string;
+    link: string | Link;
+    id?: string | null;
+  }[];
+  callToAction: {
+    label: string;
+    link: string | Link;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  title: string;
+  description: string;
+  contact: {
+    title: string;
+    email: string;
+  };
+  socialMedia?:
+    | {
+        name: string;
+        link: string | Link;
+        icon: string | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
