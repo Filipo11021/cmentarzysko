@@ -143,13 +143,13 @@ export const homepageGlobal: GlobalConfig = {
           type: 'array',
           fields: [
             {
-              name: 'title',
+              name: 'heading',
               type: 'text',
               required: true,
             },
             {
-              name: 'name',
-              type: 'textarea',
+              name: 'title',
+              type: 'text',
               required: true,
             },
             {
@@ -186,12 +186,12 @@ export const homepageGlobal: GlobalConfig = {
           type: 'array',
           fields: [
             {
-              name: 'title',
+              name: 'heading',
               type: 'text',
               required: true,
             },
             {
-              name: 'name',
+              name: 'title',
               type: 'textarea',
               required: true,
             },
