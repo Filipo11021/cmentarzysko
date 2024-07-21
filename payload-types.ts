@@ -163,7 +163,7 @@ export interface Homepage {
     buttons?:
       | {
           label: string;
-          link?: (string | null) | Link;
+          link: string | Link;
           id?: string | null;
         }[]
       | null;
@@ -175,7 +175,7 @@ export interface Homepage {
     buttons?:
       | {
           label: string;
-          link?: (string | null) | Link;
+          link: string | Link;
           id?: string | null;
         }[]
       | null;
@@ -187,7 +187,7 @@ export interface Homepage {
     buttons?:
       | {
           label: string;
-          link?: (string | null) | Link;
+          link: string | Link;
           id?: string | null;
         }[]
       | null;
@@ -224,11 +224,10 @@ export interface Homepage {
     description: string;
     items?: (string | CommunityPrize)[] | null;
   };
-  meta: {
-    title: string;
-    description: string;
-    ogImage?: string | Media | null;
-    twitterImage?: string | Media | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: string | Media | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
