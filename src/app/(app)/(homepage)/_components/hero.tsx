@@ -27,18 +27,16 @@ export const Hero: FC<Props> = ({ data }) => {
         </div>
         {data.buttons?.length ? (
           <div className="flex flex-col md:flex-row gap-12 justify-center">
-            {data.buttons.map(({ label, link }, i) =>
-              link ? (
-                <Button
-                  key={i}
-                  asChild
-                  className="flex-1 md:flex-initial"
-                  variant={i === 0 ? 'secondary' : 'primary'}
-                >
-                  <CmsLink data={link}>{label}</CmsLink>
-                </Button>
-              ) : null,
-            )}
+            {data.buttons.map(({ label, link }, i) => (
+              <Button
+                key={i}
+                asChild
+                className="flex-1 md:flex-initial"
+                variant={i === 0 ? 'secondary' : 'primary'}
+              >
+                <CmsLink data={link}>{label}</CmsLink>
+              </Button>
+            ))}
           </div>
         ) : null}
       </div>
