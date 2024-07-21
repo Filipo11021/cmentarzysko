@@ -1,5 +1,4 @@
 import { GlobalConfig } from 'payload'
-import { meta } from '../_fields/meta'
 
 export const homepageGlobal: GlobalConfig = {
   slug: 'homepage',
