@@ -19,7 +19,7 @@ export const AboutLeague: FC<Props> = ({ data }) => {
           <h2 id="about-league" className='opacity-25 uppercase'>{data.heading}</h2>
           <h3 className='font-pirateOne text-5xl text-balance'>{data.title}</h3>
           <p className='opacity-65'>{data.description}</p>
-          <div className='flex flex-wrap'>
+          <div className='flex flex-wrap gap-6'>
             {data.buttons?.map(({ label, link }, i) =>
               link ? (
                 <Button key={i} asChild>
