@@ -17,7 +17,11 @@ export const AppHeader: FC<Props> = ({ data }) => {
         </Link>
         <div className="flex items-center gap-16">
           <nav className="flex items-center gap-8">
-            <Link href="#">element</Link>
+            {data.navigation.map(({ label, link }, i) => (
+              <CmsLink className="text-sm font-bold" key={i} data={link}>
+                {label}
+              </CmsLink>
+            ))}
           </nav>
 
           <Button>
