@@ -23,6 +23,7 @@ export interface Config {
     homepage: Homepage;
     header: Header;
     footer: Footer;
+    config: Config1;
   };
   locale: null;
   user: User & {
@@ -271,6 +272,16 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "config".
+ */
+export interface Config1 {
+  id: string;
+  googleAnalyticsId?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

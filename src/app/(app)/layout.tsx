@@ -5,6 +5,7 @@ import { AppHeader } from './_components/app-header'
 import { AppFooter } from './_components/app-footer'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,9 +15,10 @@ const inter = Inter({
 /* Our app sits here to not cause any conflicts with payload's root layout  */
 const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => {
   const payload = await getPayloadHMR({ config: configPromise })
-  const [headerData, footerData] = await Promise.all([
+  const [headerData, footerData, { googleAnalyticsId }] = await Promise.all([
     payload.findGlobal({ slug: 'header' }),
     payload.findGlobal({ slug: 'footer' }),
+    payload.findGlobal({ slug: 'config' }),
   ])
 
   return (
@@ -28,6 +30,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
 
         <AppFooter data={footerData} />
       </body>
+
+      {googleAnalyticsId ? <GoogleAnalytics gaId={googleAnalyticsId} /> : null}
     </html>
   )
 }

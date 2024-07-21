@@ -17,6 +17,7 @@ import { headerGlobal } from '@/app/(payload)/_globals/header'
 import { footerGlobal } from '@/app/(payload)/_globals/footer'
 import { communityPrizesCollection } from '@/app/(payload)/_collections/community-prizes'
 import { prizesCollection } from '@/app/(payload)/_collections/prizes'
+import { configGlobal } from '@/app/(payload)/_globals/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -47,7 +48,7 @@ export default buildConfig({
     communityPrizesCollection,
     prizesCollection,
   ],
-  globals: [homepageGlobal, headerGlobal, footerGlobal],
+  globals: [homepageGlobal, headerGlobal, footerGlobal, configGlobal],
   secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
