@@ -186,6 +186,5 @@ export const homepageGlobal: GlobalConfig = {
         },
       ],
     },
-    meta(),
   ],
 }

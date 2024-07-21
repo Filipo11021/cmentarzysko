@@ -18,6 +18,7 @@ import { footerGlobal } from '@/app/(payload)/_globals/footer'
 import { communityPrizesCollection } from '@/app/(payload)/_collections/community-prizes'
 import { prizesCollection } from '@/app/(payload)/_collections/prizes'
 import { configGlobal } from '@/app/(payload)/_globals/config'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,6 +38,10 @@ export default buildConfig({
         region: env.S3_REGION,
         endpoint: env.S3_ENDPOINT,
       },
+    }),
+    seoPlugin({
+      globals: ['homepage'],
+      uploadsCollection: 'media',
     }),
   ],
   //editor: slateEditor({}),
