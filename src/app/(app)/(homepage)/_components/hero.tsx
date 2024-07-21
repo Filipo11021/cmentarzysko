@@ -4,6 +4,7 @@ import { Button } from '../../_components/ui/button'
 import Image from 'next/image'
 import { Card } from '../../_components/ui/card'
 import { Countdown } from './countdown'
+import { CmsLink } from '../../_components/cms-link'
 
 type Props = {
   data: Homepage['hero']
@@ -24,14 +25,22 @@ export const Hero: FC<Props> = ({ data }) => {
           <h2 className="mb-6 text-center">{data.timerTitle}</h2>
           <Countdown />
         </div>
-        <div className="flex flex-col md:flex-row gap-12 justify-center">
-          <Button asChild className="flex-1 md:flex-initial" variant="secondary">
-            <a href="#">Dołącz do ligi</a>
-          </Button>
-          <Button asChild className="flex-1 md:flex-initial">
-            <a href="#">Śledź ligę na Poe Racing</a>
-          </Button>
-        </div>
+        {data.buttons?.length ? (
+          <div className="flex flex-col md:flex-row gap-12 justify-center">
+            {data.buttons.map(({ label, link }, i) =>
+              link ? (
+                <Button
+                  key={i}
+                  asChild
+                  className="flex-1 md:flex-initial"
+                  variant={i === 0 ? 'secondary' : 'primary'}
+                >
+                  <CmsLink data={link}>{label}</CmsLink>
+                </Button>
+              ) : null,
+            )}
+          </div>
+        ) : null}
       </div>
       <div className="flex gap-6 mt-20 flex-col items-center">
         <h2 className="opacity-70">GŁÓWNY PARTNER</h2>

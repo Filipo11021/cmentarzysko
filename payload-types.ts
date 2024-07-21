@@ -160,6 +160,13 @@ export interface Homepage {
     title: string;
     description: string;
     timerTitle: string;
+    buttons?:
+      | {
+          label: string;
+          link?: (string | null) | Link;
+          id?: string | null;
+        }[]
+      | null;
   };
   aboutLeague: {
     heading: string;
@@ -210,20 +217,12 @@ export interface Homepage {
     heading: string;
     title: string;
     description: string;
-    items?:
-      | {
-          heading: string;
-          title: string;
-          description: string;
-          image: string | Media;
-          id?: string | null;
-        }[]
-      | null;
+    items?: (string | Prize)[] | null;
   };
   communityPrizes: {
     title: string;
     description: string;
-    items?: (string | null) | CommunityPrize;
+    items?: (string | CommunityPrize)[] | null;
   };
   meta: {
     title: string;

@@ -26,6 +26,22 @@ export const homepageGlobal: GlobalConfig = {
           type: 'text',
           required: true,
         },
+        {
+          name: 'buttons',
+          type: 'array',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'link',
+              type: 'relationship',
+              relationTo: 'links',
+            },
+          ],
+        },
       ],
     },
     {
@@ -113,7 +129,6 @@ export const homepageGlobal: GlobalConfig = {
               name: 'answer',
               type: 'richText',
               required: true,
-
             },
           ],
         },
@@ -184,7 +199,7 @@ export const homepageGlobal: GlobalConfig = {
         {
           name: 'items',
           type: 'relationship',
-          relationTo: 'community-prizes'
+          relationTo: 'community-prizes',
         },
       ],
     },
