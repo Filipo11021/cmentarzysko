@@ -14,6 +14,8 @@ export interface Config {
     users: User;
     media: Media;
     links: Link;
+    'community-prizes': CommunityPrize;
+    prizes: Prize;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -84,6 +86,32 @@ export interface Link {
   id: string;
   url: string;
   type: 'internal' | 'external';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "community-prizes".
+ */
+export interface CommunityPrize {
+  id: string;
+  heading: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "prizes".
+ */
+export interface Prize {
+  id: string;
+  heading: string;
+  title: string;
+  description: string;
+  image: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -183,8 +211,8 @@ export interface Homepage {
     description: string;
     items?:
       | {
+          heading: string;
           title: string;
-          name: string;
           description: string;
           image: string | Media;
           id?: string | null;
@@ -194,14 +222,7 @@ export interface Homepage {
   communityPrizes: {
     title: string;
     description: string;
-    items?:
-      | {
-          title: string;
-          name: string;
-          description: string;
-          id?: string | null;
-        }[]
-      | null;
+    items?: (string | null) | CommunityPrize;
   };
   meta: {
     title: string;

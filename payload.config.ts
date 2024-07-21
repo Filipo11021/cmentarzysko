@@ -15,6 +15,8 @@ import { mediaCollection } from '@/app/(payload)/_collections/media'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { headerGlobal } from '@/app/(payload)/_globals/header'
 import { footerGlobal } from '@/app/(payload)/_globals/footer'
+import { communityPrizesCollection } from '@/app/(payload)/_collections/community-prizes'
+import { prizesCollection } from '@/app/(payload)/_collections/prizes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -38,7 +40,13 @@ export default buildConfig({
   ],
   //editor: slateEditor({}),
   editor: lexicalEditor(),
-  collections: [usersCollection, mediaCollection, linksCollection],
+  collections: [
+    usersCollection,
+    mediaCollection,
+    linksCollection,
+    communityPrizesCollection,
+    prizesCollection,
+  ],
   globals: [homepageGlobal, headerGlobal, footerGlobal],
   secret: env.PAYLOAD_SECRET,
   typescript: {

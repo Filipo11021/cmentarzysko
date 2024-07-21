@@ -183,24 +183,8 @@ export const homepageGlobal: GlobalConfig = {
         },
         {
           name: 'items',
-          type: 'array',
-          fields: [
-            {
-              name: 'heading',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'title',
-              type: 'textarea',
-              required: true,
-            },
-            {
-              name: 'description',
-              type: 'textarea',
-              required: true,
-            },
-          ],
+          type: 'relationship',
+          relationTo: 'community-prizes'
         },
       ],
     },
