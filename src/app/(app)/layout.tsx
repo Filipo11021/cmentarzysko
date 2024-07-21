@@ -1,6 +1,6 @@
 import React from 'react'
 import './globals.scss'
-import { Inter } from 'next/font/google'
+import { Inter, Pirata_One } from 'next/font/google'
 import { AppHeader } from './_components/app-header'
 import { AppFooter } from './_components/app-footer'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
@@ -10,6 +10,13 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+})
+
+const pirateOne = Pirata_One({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400'],
+  variable: '--font-pirate-one',
 })
 
 /* Our app sits here to not cause any conflicts with payload's root layout  */
@@ -22,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   ])
 
   return (
-    <html className={inter.className}>
+    <html className={`${inter.className} ${pirateOne.variable}`}>
       <body className="bg-[#1D1D2D] text-white">
         <AppHeader data={headerData} />
 
