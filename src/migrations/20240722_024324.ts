@@ -9,7 +9,7 @@ EXCEPTION
 END $$;
 
 CREATE TABLE IF NOT EXISTS "users" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"email" varchar NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 
 CREATE TABLE IF NOT EXISTS "media" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"alt" varchar,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "media" (
 );
 
 CREATE TABLE IF NOT EXISTS "links" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"url" varchar NOT NULL,
 	"type" "enum_links_type" NOT NULL,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "links" (
 );
 
 CREATE TABLE IF NOT EXISTS "community_prizes" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"heading" varchar NOT NULL,
 	"title" varchar NOT NULL,
 	"subtitle" varchar NOT NULL,
@@ -56,17 +56,17 @@ CREATE TABLE IF NOT EXISTS "community_prizes" (
 );
 
 CREATE TABLE IF NOT EXISTS "prizes" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"heading" varchar NOT NULL,
 	"title" varchar NOT NULL,
 	"description" varchar NOT NULL,
-	"image_id" integer NOT NULL,
+	"image_id" uuid NOT NULL,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "payload_preferences" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"key" varchar,
 	"value" jsonb,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -76,13 +76,13 @@ CREATE TABLE IF NOT EXISTS "payload_preferences" (
 CREATE TABLE IF NOT EXISTS "payload_preferences_rels" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"order" integer,
-	"parent_id" integer NOT NULL,
+	"parent_id" uuid NOT NULL,
 	"path" varchar NOT NULL,
-	"users_id" integer
+	"users_id" uuid
 );
 
 CREATE TABLE IF NOT EXISTS "payload_migrations" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar,
 	"batch" numeric,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -91,38 +91,38 @@ CREATE TABLE IF NOT EXISTS "payload_migrations" (
 
 CREATE TABLE IF NOT EXISTS "homepage_hero_buttons" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"label" varchar NOT NULL,
-	"link_id" integer NOT NULL
+	"link_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "homepage_about_league_buttons" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"label" varchar NOT NULL,
-	"link_id" integer NOT NULL
+	"link_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "homepage_questions_buttons" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"label" varchar NOT NULL,
-	"link_id" integer NOT NULL
+	"link_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "homepage_questions_items" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"question" varchar NOT NULL,
 	"answer" jsonb NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "homepage" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"hero_title" varchar NOT NULL,
 	"hero_description" varchar NOT NULL,
 	"hero_timer_title" varchar NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS "homepage" (
 	"community_prizes_description" varchar NOT NULL,
 	"meta_title" varchar,
 	"meta_description" varchar,
-	"meta_image_id" integer,
+	"meta_image_id" uuid,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
 );
@@ -147,39 +147,39 @@ CREATE TABLE IF NOT EXISTS "homepage" (
 CREATE TABLE IF NOT EXISTS "homepage_rels" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"order" integer,
-	"parent_id" integer NOT NULL,
+	"parent_id" uuid NOT NULL,
 	"path" varchar NOT NULL,
-	"prizes_id" integer,
-	"community_prizes_id" integer
+	"prizes_id" uuid,
+	"community_prizes_id" uuid
 );
 
 CREATE TABLE IF NOT EXISTS "header_navigation" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"label" varchar NOT NULL,
-	"link_id" integer NOT NULL
+	"link_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "header" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"call_to_action_label" varchar NOT NULL,
-	"call_to_action_link_id" integer NOT NULL,
+	"call_to_action_link_id" uuid NOT NULL,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "footer_social_media" (
 	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"name" varchar NOT NULL,
-	"link_id" integer NOT NULL,
-	"icon_id" integer NOT NULL
+	"link_id" uuid NOT NULL,
+	"icon_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "footer" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" varchar NOT NULL,
 	"description" varchar NOT NULL,
 	"contact_title" varchar NOT NULL,
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS "footer" (
 );
 
 CREATE TABLE IF NOT EXISTS "config" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"google_analytics_id" varchar,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
