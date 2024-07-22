@@ -29,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   ])
 
   return (
-    <html className={`${inter.className} ${pirateOne.variable}`}>
+    <html lang="pl" className={`${inter.className} ${pirateOne.variable}`}>
       <body className="bg-[#1D1D2D] text-white">
         <AppHeader data={headerData} />
 
