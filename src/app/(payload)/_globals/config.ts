@@ -3,7 +3,7 @@ import { GlobalConfig } from 'payload'
 export const configGlobal: GlobalConfig = {
   slug: 'config',
   admin: {
-    group: 'admin',
+    group: 'Admin',
   },
   fields: [
     {
