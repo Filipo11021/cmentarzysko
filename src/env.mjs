@@ -7,11 +7,10 @@ const S3Schema = {
   S3_REGION: z.string().min(1),
   S3_BUCKET: z.string().min(1),
   S3_ENDPOINT: z.string().min(1).optional(),
-  PAYLOAD_SECRET: z.string().min(1),
 }
 
 const uploadthingSchema = {
-  UPLOADTHING_SECRET: z.string().min(1)
+  UPLOADTHING_SECRET: z.string().min(1),
 }
 
 export const env = createEnv({
@@ -21,6 +20,7 @@ export const env = createEnv({
     STORAGE_TYPE: z.enum(['local', 'S3', 'uploadthing']),
     DATABASE_TYPE: z.enum(['postgres', 'mongo']),
     DATABASE_URI: z.string().min(1),
+    PAYLOAD_SECRET: z.string().min(1),
   },
   client: {},
 
