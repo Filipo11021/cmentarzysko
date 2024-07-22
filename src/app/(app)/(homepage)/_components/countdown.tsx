@@ -16,7 +16,7 @@ function CountdownCard({
   return (
     <div className="flex flex-col items-center gap-3">
       <Card
-        className="flex px-5 py-3 flex-col justify-center items-center text-2xl font-bold min-h-[4.5rem] min-w-[4.5rem]"
+        className="flex px-5 py-3 flex-col justify-center items-center text-2xl font-bold min-h-[4.7rem] min-w-[4.7rem]"
         variant={variant}
       >
         {children}
@@ -27,7 +27,7 @@ function CountdownCard({
 }
 
 export function Countdown() {
-  const { seconds, minutes, hours, days } = useCountdown(new Date())
+  const { seconds, minutes, hours, days } = useCountdown(new Date('2024-07-26T20:00:00+0000'))
   return (
     <div className="flex gap-8">
       <CountdownCard variant="secondary" name="Dni">
