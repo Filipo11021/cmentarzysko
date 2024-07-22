@@ -9,9 +9,12 @@ const button = cva(
       variant: {
         primary: ['bg-[#232335]', 'text-white', 'border-[#54619C]', 'hover:bg-slate-900'],
         secondary: ['bg-gradient', 'text-white', 'border-[#54619C]', 'hover:bg-slate-900'],
+        outline: ['text-white', 'border-[#54619C]', 'hover:opacity-70', 'transition-opacity'],
+        link: ['text-white', 'hover:opacity-70', 'border-none'],
       },
       size: {
         medium: ['text-base', 'py-3', 'px-5'],
+        icon: 'p-3',
       },
     },
     defaultVariants: {
