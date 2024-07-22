@@ -16,57 +16,48 @@ import { communityPrizesCollection } from '@/app/(payload)/_collections/communit
 import { prizesCollection } from '@/app/(payload)/_collections/prizes'
 import { configGlobal } from '@/app/(payload)/_globals/config'
 import { seoPlugin } from '@payloadcms/plugin-seo'
-import { Plugin } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const storagePlugin: Plugin = async (config) => {
-  if (!config.plugins) {
-    config.plugins = []
-  }
-
+const loadStorage = () => {
   if (env.STORAGE_TYPE === 'S3') {
-    const { s3Storage } = await import('@payloadcms/storage-s3')
-    config.plugins.push(
-      s3Storage({
-        collections: {
-          media: true,
+    return s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: env.S3_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: env.S3_ACCESS_KEY_ID,
+          secretAccessKey: env.S3_SECRET_ACCESS_KEY,
         },
-        bucket: env.S3_BUCKET,
-        config: {
-          credentials: {
-            accessKeyId: env.S3_ACCESS_KEY_ID,
-            secretAccessKey: env.S3_SECRET_ACCESS_KEY,
-          },
-          region: env.S3_REGION,
-          endpoint: env.S3_ENDPOINT,
-        },
-      }),
-    )
+        region: env.S3_REGION,
+        endpoint: env.S3_ENDPOINT,
+      },
+    })
   }
 
   if (env.STORAGE_TYPE === 'uploadthing') {
-    const { uploadthingStorage } = await import('@payloadcms/storage-uploadthing')
-    config.plugins.push(
-      uploadthingStorage({
-        collections: {
-          media: true,
-        },
-        options: {
-          apiKey: env.UPLOADTHING_SECRET,
-          acl: 'public-read',
-        },
-      }),
-    )
+    return uploadthingStorage({
+      collections: {
+        media: true,
+      },
+      options: {
+        apiKey: env.UPLOADTHING_SECRET,
+        acl: 'public-read',
+      },
+    })
   }
-
-  return config
 }
+const storagePlugin = loadStorage()
 
-const loadDatabase = async () => {
+const loadDatabase = () => {
   if (env.DATABASE_TYPE === 'postgres') {
-    const { postgresAdapter } = await import('@payloadcms/db-postgres')
     return postgresAdapter({
       pool: {
         connectionString: process.env.DATABASE_URI,
@@ -75,15 +66,15 @@ const loadDatabase = async () => {
     })
   }
 
-  const { mongooseAdapter } = await import('@payloadcms/db-mongodb')
   return mongooseAdapter({
     url: env.DATABASE_URI,
   })
 }
+const dbAdapter = loadDatabase()
 
 export default buildConfig({
   plugins: [
-    storagePlugin,
+    ...(storagePlugin ? [storagePlugin] : []),
     seoPlugin({
       globals: ['homepage'],
       uploadsCollection: 'media',
@@ -103,7 +94,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: await loadDatabase(),
+  db: dbAdapter,
 
   /**
    * Payload can now accept specific translations from 'payload/i18n/en'
