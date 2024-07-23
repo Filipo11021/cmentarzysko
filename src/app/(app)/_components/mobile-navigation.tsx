@@ -15,7 +15,7 @@ export const MobileNavigation: FC<Props> = ({ data }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size="icon" className="shrink-0 md:hidden">
+        <Button size="icon" className="shrink-0 xl:hidden">
           <MenuIcon className="h-5 w-5" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>

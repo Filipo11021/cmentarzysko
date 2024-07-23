@@ -12,19 +12,21 @@ type Props = { data: Header }
 export const AppHeader: FC<Props> = ({ data }) => {
   return (
     <Container asChild>
-      <header className="flex justify-between items-center gap-2 pt-8 pb-3">
+      <header className="flex justify-between items-center gap-4 pt-8 pb-3">
         <Link href="/">
           <Image src="/logo.png" alt="logo" width={265} height={108.5} />
         </Link>
-        <div className="flex items-center gap-4 md:gap-16">
+        <div className="flex items-center gap-4 xl:gap-16">
           {/* desktop menu */}
-          <nav className="md:flex items-center gap-8 hidden">
+          <nav className="xl:flex items-center gap-8 hidden">
             {data.navigation.map(({ label, link }, i) => (
-              <Button asChild variant="link" className="p-0" key={i}>
-                <CmsLink className="text-sm font-bold" data={link}>
-                  {label}
-                </CmsLink>
-              </Button>
+              <CmsLink
+                key={i}
+                className="text-sm font-bold hover:opacity-65 transition-opacity"
+                data={link}
+              >
+                {label}
+              </CmsLink>
             ))}
           </nav>
 
