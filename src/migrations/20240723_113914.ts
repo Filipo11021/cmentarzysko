@@ -131,6 +131,7 @@ CREATE TABLE IF NOT EXISTS "homepage" (
 	"about_league_heading" varchar NOT NULL,
 	"about_league_title" varchar NOT NULL,
 	"about_league_description" varchar NOT NULL,
+	"about_league_video_id" uuid,
 	"questions_heading" varchar NOT NULL,
 	"questions_title" varchar NOT NULL,
 	"questions_description" varchar NOT NULL,
@@ -139,6 +140,11 @@ CREATE TABLE IF NOT EXISTS "homepage" (
 	"prizes_description" varchar NOT NULL,
 	"community_prizes_title" varchar NOT NULL,
 	"community_prizes_description" varchar NOT NULL,
+	"community_prizes_contact_title" varchar,
+	"community_prizes_contact_discord_label" varchar,
+	"community_prizes_contact_discord_link_id" uuid,
+	"community_prizes_contact_mail_label" varchar,
+	"community_prizes_contact_mail_link_id" uuid,
 	"meta_title" varchar,
 	"meta_description" varchar,
 	"meta_image_id" uuid,
@@ -291,6 +297,24 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "homepage_questions_items" ADD CONSTRAINT "homepage_questions_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "homepage"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "homepage" ADD CONSTRAINT "homepage_about_league_video_id_media_id_fk" FOREIGN KEY ("about_league_video_id") REFERENCES "media"("id") ON DELETE set null ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "homepage" ADD CONSTRAINT "homepage_community_prizes_contact_discord_link_id_links_id_fk" FOREIGN KEY ("community_prizes_contact_discord_link_id") REFERENCES "links"("id") ON DELETE set null ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "homepage" ADD CONSTRAINT "homepage_community_prizes_contact_mail_link_id_links_id_fk" FOREIGN KEY ("community_prizes_contact_mail_link_id") REFERENCES "links"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

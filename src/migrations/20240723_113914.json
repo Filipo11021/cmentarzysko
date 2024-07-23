@@ -1,5 +1,5 @@
 {
-  "id": "c779016b-4e2c-487a-8e87-7856bda84cbd",
+  "id": "28fb0936-c791-49d9-bcd9-b9cfd1e71095",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -961,6 +961,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "about_league_video_id": {
+          "name": "about_league_video_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
         "questions_heading": {
           "name": "questions_heading",
           "type": "varchar",
@@ -1009,6 +1015,36 @@
           "primaryKey": false,
           "notNull": true
         },
+        "community_prizes_contact_title": {
+          "name": "community_prizes_contact_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_prizes_contact_discord_label": {
+          "name": "community_prizes_contact_discord_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_prizes_contact_discord_link_id": {
+          "name": "community_prizes_contact_discord_link_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_prizes_contact_mail_label": {
+          "name": "community_prizes_contact_mail_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_prizes_contact_mail_link_id": {
+          "name": "community_prizes_contact_mail_link_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
         "meta_title": {
           "name": "meta_title",
           "type": "varchar",
@@ -1042,6 +1078,45 @@
       },
       "indexes": {},
       "foreignKeys": {
+        "homepage_about_league_video_id_media_id_fk": {
+          "name": "homepage_about_league_video_id_media_id_fk",
+          "tableFrom": "homepage",
+          "tableTo": "media",
+          "columnsFrom": [
+            "about_league_video_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "homepage_community_prizes_contact_discord_link_id_links_id_fk": {
+          "name": "homepage_community_prizes_contact_discord_link_id_links_id_fk",
+          "tableFrom": "homepage",
+          "tableTo": "links",
+          "columnsFrom": [
+            "community_prizes_contact_discord_link_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "homepage_community_prizes_contact_mail_link_id_links_id_fk": {
+          "name": "homepage_community_prizes_contact_mail_link_id_links_id_fk",
+          "tableFrom": "homepage",
+          "tableTo": "links",
+          "columnsFrom": [
+            "community_prizes_contact_mail_link_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "homepage_meta_image_id_media_id_fk": {
           "name": "homepage_meta_image_id_media_id_fk",
           "tableFrom": "homepage",
