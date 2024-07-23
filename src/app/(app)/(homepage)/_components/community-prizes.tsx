@@ -4,6 +4,7 @@ import { Container } from '../../_components/ui/container'
 import { Card, CardDescription, CardTitle } from '../../_components/ui/card'
 import { Button } from '../../_components/ui/button'
 import Link from 'next/link'
+import { CmsLink } from '../../_components/cms-link'
 
 type Props = {
   data: Homepage['communityPrizes']
@@ -18,6 +19,16 @@ export const CommunityPrizes: FC<Props> = ({ data }) => {
             {data.title}
           </p>
           <p className="opacity-65">{data.description}</p>
+
+          <p>{data.contact?.title}</p>
+          <div className="flex gap-6">
+            <Button asChild>
+              <CmsLink data={data.contact?.mail?.link ?? ''}>{data.contact?.mail?.label}</CmsLink>
+            </Button>
+            <Button asChild>
+              <CmsLink data={data.contact?.discord?.link ?? ''}>{data.contact?.discord?.label ?? ''}</CmsLink>
+            </Button>
+          </div>
         </div>
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -35,7 +46,7 @@ export const CommunityPrizes: FC<Props> = ({ data }) => {
           })}
         </div>
 
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
           <Button className="mt-6">
             <Link href="/community-prizes">Pokaż wszystkie</Link>
           </Button>
