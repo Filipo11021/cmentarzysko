@@ -210,6 +210,7 @@ export interface Homepage {
             };
             [k: string]: unknown;
           };
+          answerHtml?: string | null;
           id?: string | null;
         }[]
       | null;

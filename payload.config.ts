@@ -1,6 +1,6 @@
 import path from 'path'
 import { en } from 'payload/i18n/en'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { HTMLConverterFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 //import { slateEditor } from '@payloadcms/richtext-slate'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -81,7 +81,9 @@ export default buildConfig({
     }),
   ],
   //editor: slateEditor({}),
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
+  }),
   collections: [
     usersCollection,
     mediaCollection,

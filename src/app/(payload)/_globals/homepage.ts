@@ -1,3 +1,4 @@
+import { lexicalHTML } from '@payloadcms/richtext-lexical'
 import { GlobalConfig } from 'payload'
 
 export const homepageGlobal: GlobalConfig = {
@@ -132,6 +133,7 @@ export const homepageGlobal: GlobalConfig = {
               type: 'richText',
               required: true,
             },
+            lexicalHTML('answer', { name: 'answerHtml' }),
           ],
         },
       ],

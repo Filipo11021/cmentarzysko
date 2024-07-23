@@ -25,13 +25,13 @@ const AccordionTrigger: React.FC<React.ComponentProps<typeof AccordionPrimitive.
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex flex-1 mb-3 items-center justify-between text-3xl font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'flex flex-1 mb-4 items-center justify-between text-3xl font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
         className,
       )}
       {...props}
     >
       {children}
-      <ChevronDownIcon className="h-4 w-4 mr-6 shrink-0 text-muted-foreground transition-transform duration-200" />
+      <ChevronDownIcon className="h-6 w-6 mr-6 shrink-0 text-muted-foreground transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 )
