@@ -42,7 +42,7 @@
     "graphql": "^16.8.2",
     "isomorphic-dompurify": "^2.13.0",
     "lucide-react": "^0.412.0",
-    "next": "15.0.0-canary.58",
+    "next": "15.0.0-canary.77",
     "payload": "3.0.0-beta.65",
     "react": "19.0.0-rc-6230622a1a-20240610",
     "react-dom": "19.0.0-rc-6230622a1a-20240610",
