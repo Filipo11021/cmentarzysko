@@ -19,7 +19,7 @@ export const Questions: FC<Props> = ({ data }) => {
   return (
     <Container asChild>
       <section
-        className="flex flex-col lg:flex-row py-12 flex-wrap justify-between gap-16"
+        className="flex flex-col lg:flex-row py-32 flex-wrap justify-between gap-16"
         aria-labelledby="questions"
       >
         <div className="flex-1 flex flex-col gap-6">
