@@ -9,5 +9,5 @@ type ContainerProps = HtmlHTMLAttributes<HTMLDivElement> & {
 export const Container: FC<ContainerProps> = ({ asChild, className, ...props }) => {
   const Comp = asChild ? Slot : 'div'
 
-  return <Comp className={cn('max-w-8xl px-2 mx-auto', className)} {...props} />
+  return <Comp className={cn('max-w-8xl px-4 mx-auto', className)} {...props} />
 }
