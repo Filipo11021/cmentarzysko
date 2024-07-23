@@ -81,6 +81,11 @@ export const homepageGlobal: GlobalConfig = {
             },
           ],
         },
+        {
+          name: 'video',
+          type: 'upload',
+          relationTo: 'media',
+        },
       ],
     },
     {
@@ -178,6 +183,51 @@ export const homepageGlobal: GlobalConfig = {
           name: 'description',
           type: 'textarea',
           required: true,
+        },
+        {
+          name: 'contact',
+          type: 'group',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+    
+            },
+            {
+              name: 'discord',
+              type: 'group',
+              fields: [
+                {
+                  name: 'label',
+                  type: 'text',
+        
+                },
+                {
+                  name: 'link',
+                  type: 'relationship',
+                  relationTo: 'links',
+        
+                },
+              ],
+            },
+            {
+              name: 'mail',
+              type: 'group',
+              fields: [
+                {
+                  name: 'label',
+                  type: 'text',
+        
+                },
+                {
+                  name: 'link',
+                  type: 'relationship',
+                  relationTo: 'links',
+        
+                },
+              ],
+            },
+          ],
         },
         {
           name: 'items',

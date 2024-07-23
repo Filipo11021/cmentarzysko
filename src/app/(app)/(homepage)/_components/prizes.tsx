@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Container } from '../../_components/ui/container'
 import { Card, CardDescription, CardTitle } from '../../_components/ui/card'
 import Image from 'next/image'
+import { baseCmsMediaUrl } from '@/app/base-image-url'
 
 type Props = {
   data: Homepage['prizes']
@@ -32,7 +33,7 @@ export const Prizes: FC<Props> = ({ data }) => {
                   <p className="uppercase text-center opacity-65">{item.heading}</p>
                   <div className="relative h-44">
                     <Image
-                      src={itemImage?.url ?? ''}
+                      src={`${baseCmsMediaUrl}${itemImage?.url}` ?? ''}
                       alt={itemImage?.alt ?? ''}
                       fill
                       objectFit="contain"
