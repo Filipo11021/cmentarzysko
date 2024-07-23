@@ -21,7 +21,7 @@ export const CommunityPrizes: FC<Props> = ({ data }) => {
           <p className="opacity-65">{data.description}</p>
 
           <p>{data.contact?.title}</p>
-          <div className="flex gap-6">
+          <div className="flex gap-6 justify-center">
             <Button asChild>
               <CmsLink data={data.contact?.mail?.link ?? ''}>{data.contact?.mail?.label}</CmsLink>
             </Button>

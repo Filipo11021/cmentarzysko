@@ -37,7 +37,7 @@ export const Questions: FC<Props> = ({ data }) => {
           </div>
         </div>
         <div className="flex-1">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full flex flex-col gap-6">
             {data.items?.map(({ answerHtml, question }, i) => {
               const sanitizedAnswerHtml = sanitize(answerHtml ?? '')
               console.log(sanitizedAnswerHtml)
