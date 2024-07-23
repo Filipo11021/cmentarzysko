@@ -16,7 +16,7 @@ function CountdownCard({
   return (
     <div className="flex flex-col items-center gap-3">
       <Card
-        className="flex px-5 py-3 flex-col justify-center items-center text-2xl font-bold min-h-[4.7rem] min-w-[4.7rem]"
+        className="flex px-5 py-3 flex-col justify-center items-center text-2xl font-bold h-14 w-14 lg:h-[4.7rem] lg:w-[4.7rem]"
         variant={variant}
       >
         {children}
