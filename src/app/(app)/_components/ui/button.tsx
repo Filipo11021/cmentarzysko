@@ -7,7 +7,7 @@ const button = cva(
   {
     variants: {
       variant: {
-        primary: ['bg-gradient', 'text-white', 'border-[#54619C]', 'hover:bg-[#232335]'],
+        primary: ['bg-[#232335]', 'text-white', 'border-[#54619C]', 'hover:bg-gradient'],
         outline: ['text-white', 'border-[#54619C]', 'hover:opacity-70', 'transition-opacity'],
         link: ['text-white', 'hover:opacity-70', 'border-none'],
       },

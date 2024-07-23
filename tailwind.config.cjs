@@ -18,7 +18,7 @@ module.exports = {
       },
       backgroundImage: {
         gradient:
-          'linear-gradient(96deg, rgba(29, 29, 45, 0.25) 0%, rgba(216, 156, 99, 0.25) 97.83%), #232335',
+          'linear-gradient(96deg, rgba(29, 29, 45, 0.25) 0%, rgba(216, 156, 99, 0.25) 97.83%)',
       },
       keyframes: {
         'accordion-down': {
