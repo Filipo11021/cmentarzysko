@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import { CollectionConfig } from 'payload'
 
 export const linksCollection: CollectionConfig = {
@@ -5,6 +6,14 @@ export const linksCollection: CollectionConfig = {
   admin: {
     group: 'Admin',
     useAsTitle: 'url',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+        revalidatePath('/community-prizes')
+      },
+    ],
   },
   fields: [
     {

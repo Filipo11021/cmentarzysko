@@ -1,9 +1,17 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 export const mediaCollection: CollectionConfig = {
   slug: 'media',
   admin: {
     group: 'Admin',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+      },
+    ],
   },
   upload: {
     mimeTypes: ['image/*', 'video/*'],

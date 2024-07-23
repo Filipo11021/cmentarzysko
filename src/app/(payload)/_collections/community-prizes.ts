@@ -1,9 +1,18 @@
+import { revalidatePath } from 'next/cache'
 import { CollectionConfig } from 'payload'
 
 export const communityPrizesCollection: CollectionConfig = {
   slug: 'community-prizes',
   admin: {
     useAsTitle: 'title',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+        revalidatePath('/community-prizes')
+      },
+    ],
   },
   fields: [
     {

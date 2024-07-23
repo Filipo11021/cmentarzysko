@@ -1,9 +1,18 @@
+import { revalidatePath } from 'next/cache'
 import { GlobalConfig } from 'payload'
 
 export const headerGlobal: GlobalConfig = {
   slug: 'header',
   admin: {
     group: 'Layout',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+        revalidatePath('/community-prizes')
+      },
+    ],
   },
   fields: [
     {

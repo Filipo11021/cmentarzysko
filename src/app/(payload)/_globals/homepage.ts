@@ -1,10 +1,19 @@
 import { lexicalHTML } from '@payloadcms/richtext-lexical'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { GlobalConfig } from 'payload'
 
 export const homepageGlobal: GlobalConfig = {
   slug: 'homepage',
   admin: {
     group: 'Pages',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+        revalidatePath('/community-prizes')
+      },
+    ],
   },
   fields: [
     {
@@ -191,7 +200,6 @@ export const homepageGlobal: GlobalConfig = {
             {
               name: 'title',
               type: 'text',
-    
             },
             {
               name: 'discord',
@@ -200,13 +208,11 @@ export const homepageGlobal: GlobalConfig = {
                 {
                   name: 'label',
                   type: 'text',
-        
                 },
                 {
                   name: 'link',
                   type: 'relationship',
                   relationTo: 'links',
-        
                 },
               ],
             },
@@ -217,13 +223,11 @@ export const homepageGlobal: GlobalConfig = {
                 {
                   name: 'label',
                   type: 'text',
-        
                 },
                 {
                   name: 'link',
                   type: 'relationship',
                   relationTo: 'links',
-        
                 },
               ],
             },
