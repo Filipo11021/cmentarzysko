@@ -25,7 +25,7 @@ const AccordionTrigger: React.FC<React.ComponentProps<typeof AccordionPrimitive.
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex flex-1 items-center justify-between text-3xl font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'flex flex-1 text-balance text-start items-start justify-between text-xl lg:text-3xl font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
         className,
       )}
       {...props}
