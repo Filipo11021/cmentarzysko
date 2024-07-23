@@ -260,6 +260,13 @@ export interface Footer {
   id: string;
   title: string;
   description: string;
+  buttons?:
+    | {
+        label: string;
+        link: string | Link;
+        id?: string | null;
+      }[]
+    | null;
   contact: {
     title: string;
     email: string;

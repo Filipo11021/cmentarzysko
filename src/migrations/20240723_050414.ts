@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 CREATE TABLE IF NOT EXISTS "media" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"alt" varchar,
+	"_key" varchar,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"url" varchar,
@@ -118,7 +119,8 @@ CREATE TABLE IF NOT EXISTS "homepage_questions_items" (
 	"_parent_id" uuid NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"question" varchar NOT NULL,
-	"answer" jsonb NOT NULL
+	"answer" jsonb NOT NULL,
+	"answer_html" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "homepage" (
@@ -167,6 +169,14 @@ CREATE TABLE IF NOT EXISTS "header" (
 	"call_to_action_link_id" uuid NOT NULL,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
+);
+
+CREATE TABLE IF NOT EXISTS "footer_buttons" (
+	"_order" integer NOT NULL,
+	"_parent_id" uuid NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"label" varchar NOT NULL,
+	"link_id" uuid NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "footer_social_media" (
@@ -221,6 +231,8 @@ CREATE INDEX IF NOT EXISTS "homepage_rels_parent_idx" ON "homepage_rels" ("paren
 CREATE INDEX IF NOT EXISTS "homepage_rels_path_idx" ON "homepage_rels" ("path");
 CREATE INDEX IF NOT EXISTS "header_navigation_order_idx" ON "header_navigation" ("_order");
 CREATE INDEX IF NOT EXISTS "header_navigation_parent_id_idx" ON "header_navigation" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "footer_buttons_order_idx" ON "footer_buttons" ("_order");
+CREATE INDEX IF NOT EXISTS "footer_buttons_parent_id_idx" ON "footer_buttons" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "footer_social_media_order_idx" ON "footer_social_media" ("_order");
 CREATE INDEX IF NOT EXISTS "footer_social_media_parent_id_idx" ON "footer_social_media" ("_parent_id");
 DO $$ BEGIN
@@ -326,6 +338,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "footer_buttons" ADD CONSTRAINT "footer_buttons_link_id_links_id_fk" FOREIGN KEY ("link_id") REFERENCES "links"("id") ON DELETE set null ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "footer_buttons" ADD CONSTRAINT "footer_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "footer"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "footer_social_media" ADD CONSTRAINT "footer_social_media_link_id_links_id_fk" FOREIGN KEY ("link_id") REFERENCES "links"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -363,6 +387,7 @@ DROP TABLE "homepage";
 DROP TABLE "homepage_rels";
 DROP TABLE "header_navigation";
 DROP TABLE "header";
+DROP TABLE "footer_buttons";
 DROP TABLE "footer_social_media";
 DROP TABLE "footer";
 DROP TABLE "config";`)

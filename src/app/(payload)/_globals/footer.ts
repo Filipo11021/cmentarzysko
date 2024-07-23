@@ -17,6 +17,23 @@ export const footerGlobal: GlobalConfig = {
       required: true,
     },
     {
+      name: 'buttons',
+      type: 'array',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'links',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'contact',
       type: 'group',
       fields: [
