@@ -13,7 +13,7 @@ export const AboutLeague: FC<Props> = ({ data }) => {
     <div className="bg-[rgb(25,25,38)]">
       <Container asChild>
         <section
-          className="flex py-32 flex-wrap justify-between gap-[16rem] "
+          className="flex py-32 flex-col lg:flex-row flex-wrap items-center lg:justify-between gap-16 lg:gap-64 "
           aria-labelledby="about-league"
         >
           <div className="flex-1 flex flex-col gap-8">
