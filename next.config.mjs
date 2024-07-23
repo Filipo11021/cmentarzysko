@@ -4,8 +4,21 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig = {
   // Your Next.js config here
   experimental: {
-    reactCompiler: false
-  }
+    reactCompiler: false,
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'cmentarzysko-prod.vercel.app',
+      },
+      {
+        hostname: 'poecmentarzysko.pl',
+      },
+      {
+        hostname: 'localhost',
+      },
+    ],
+  },
 }
 
 export default withPayload(nextConfig)
