@@ -22,7 +22,7 @@ export const AppHeader: FC<Props> = ({ data }) => {
             {data.navigation.map(({ label, link }, i) => (
               <CmsLink
                 key={i}
-                className="text-sm font-bold hover:opacity-65 transition-opacity"
+                className="text-sm transition-all hover:text-[#FCEE80] hover:underline font-bold"
                 data={link}
               >
                 {label}
