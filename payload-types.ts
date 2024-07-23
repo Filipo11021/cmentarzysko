@@ -180,6 +180,7 @@ export interface Homepage {
           id?: string | null;
         }[]
       | null;
+    video?: string | Media | null;
   };
   questions: {
     heading: string;
@@ -224,6 +225,17 @@ export interface Homepage {
   communityPrizes: {
     title: string;
     description: string;
+    contact?: {
+      title?: string | null;
+      discord?: {
+        label?: string | null;
+        link?: (string | null) | Link;
+      };
+      mail?: {
+        label?: string | null;
+        link?: (string | null) | Link;
+      };
+    };
     items?: (string | CommunityPrize)[] | null;
   };
   meta?: {

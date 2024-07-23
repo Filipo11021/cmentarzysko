@@ -11,15 +11,6 @@ export const mediaCollection: CollectionConfig = {
   access: {
     read: () => true,
   },
-  hooks: {
-    beforeRead: [
-      (doc) => {
-        if (!doc || Array.isArray(doc.doc)) return doc
-        doc.doc.url = `${process.env.NEXT_PUBLIC_VERCEL_URL}/${doc.doc.url}`
-        return doc
-      },
-    ],
-  },
   fields: [
     {
       name: 'alt',
