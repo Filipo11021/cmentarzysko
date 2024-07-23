@@ -9,7 +9,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'cmentarzysko-prod.vercel.app',
+        hostname: 'cmentarzysko*.vercel.app',
       },
       {
         hostname: 'poecmentarzysko.pl',
